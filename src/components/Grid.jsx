@@ -18,7 +18,6 @@ const winConditions = [
 export default class Grid extends Component {
 	state = {
 		noughtTurn: true,
-		inplay: true,
 		values: ["", "", "", "", "", "", "", "", ""]
 	};
 

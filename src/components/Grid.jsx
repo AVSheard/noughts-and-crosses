@@ -5,7 +5,7 @@ import React, { Component } from "react";
 export default class Grid extends Component {
 	state = {
 		turn: true,
-		nums: [
+		values: [
 			{ value: "" },
 			{ value: "" },
 			{ value: "" },
@@ -21,10 +21,10 @@ export default class Grid extends Component {
 	render() {
 		return (
 			<div className="grid-container">
-				{this.state.nums.map((num, index) => {
+				{this.state.values.map((entry, index) => {
 					return (
 						<div className="grid-item" key={index}>
-							{num.value}
+							{entry.value}
 						</div>
 					);
 				})}

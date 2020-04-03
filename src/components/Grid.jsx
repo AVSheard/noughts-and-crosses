@@ -21,7 +21,18 @@ export default observer(
 	class Grid extends Component {
 		state = {
 			noughtTurn: true,
-			values: ["", "", "", "", "", "", "", "", ""]
+			values: ["", "", "", "", "", "", "", "", ""],
+			classes: [
+				"grid-item",
+				"grid-item",
+				"grid-item",
+				"grid-item",
+				"grid-item",
+				"grid-item",
+				"grid-item",
+				"grid-item",
+				"grid-item"
+			]
 		};
 
 		handleClick = (index) => {
@@ -47,6 +58,13 @@ export default observer(
 							? "Crosses"
 							: "Noughts";
 						endOfGameInfo.inPlay = false;
+						this.setState((currentState) => {
+							const classesArr = [...currentState.classes];
+							classesArr[condition[0]] = "grid-item win";
+							classesArr[condition[1]] = "grid-item win";
+							classesArr[condition[2]] = "grid-item win";
+							return { classes: classesArr };
+						});
 					} else if (values.find((value) => value === "") !== "") {
 						endOfGameInfo.winner = "Neither of you";
 						endOfGameInfo.inPlay = false;
@@ -61,7 +79,7 @@ export default observer(
 					{this.state.values.map((entry, index) => {
 						return (
 							<div
-								className="grid-item"
+								className={this.state.classes[index]}
 								key={index}
 								onClick={() => {
 									this.handleClick(index);

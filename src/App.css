@@ -46,16 +46,32 @@
 	grid-template-rows: repeat(3, 1fr);
 	background-color: #2196f3;
 	padding: 10px;
+	width: 425px;
+	text-align: center;
+	flex: auto;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .grid-item {
 	background-color: rgba(255, 255, 255, 0.8);
 	border: 1px solid rgba(0, 0, 0, 0.8);
 	padding: 20px;
-	font-size: 30px;
+	font-size: 60px;
+	height: 100px;
+	width: 100px;
 	text-align: center;
 }
 
 .win {
 	color: greenyellow;
+}
+
+.finalMessage {
+	text-align: center;
+}
+
+.box {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
 }

@@ -36,17 +36,19 @@ export default observer(
 
 		componentDidUpdate(prevProps, prevState) {
 			const { values } = this.state;
-			if (prevState !== values) {
+			if (prevState.values !== values) {
 				winConditions.forEach((condition) => {
 					if (
 						values[condition[0]] === values[condition[1]] &&
 						values[condition[0]] === values[condition[2]] &&
 						values[condition[0]] !== ""
 					) {
-						console.log("win");
 						endOfGameInfo.winner = this.state.noughtTurn
 							? "Crosses"
 							: "Noughts";
+						endOfGameInfo.inPlay = false;
+					} else if (values.find((value) => value === "") !== "") {
+						endOfGameInfo.winner = "Neither of you";
 						endOfGameInfo.inPlay = false;
 					}
 				});

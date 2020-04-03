@@ -21,51 +21,51 @@ export default observer(
 	class Grid extends Component {
 		state = {
 			noughtTurn: true,
-			values: ["", "", "", "", "", "", "", "", ""],
-			classes: [
-				"grid-item",
-				"grid-item",
-				"grid-item",
-				"grid-item",
-				"grid-item",
-				"grid-item",
-				"grid-item",
-				"grid-item",
-				"grid-item"
+			blocks: [
+				{ value: "", classes: "grid-item" },
+				{ value: "", classes: "grid-item" },
+				{ value: "", classes: "grid-item" },
+				{ value: "", classes: "grid-item" },
+				{ value: "", classes: "grid-item" },
+				{ value: "", classes: "grid-item" },
+				{ value: "", classes: "grid-item" },
+				{ value: "", classes: "grid-item" },
+				{ value: "", classes: "grid-item" }
 			]
 		};
 
 		handleClick = (index) => {
-			if (this.state.values[index] === "" && endOfGameInfo.inPlay) {
+			if (this.state.blocks[index].value === "" && endOfGameInfo.inPlay) {
+				endOfGameInfo.turns++;
 				this.setState((currentState) => {
-					const arr = [...currentState.values];
-					arr[index] = this.state.noughtTurn ? nought : cross;
-					return { values: arr, noughtTurn: !currentState.noughtTurn };
+					const arr = [...currentState.blocks];
+					arr[index].value = this.state.noughtTurn ? nought : cross;
+					return { blocks: arr, noughtTurn: !currentState.noughtTurn };
 				});
 			}
 		};
 
 		componentDidUpdate(prevProps, prevState) {
-			const { values } = this.state;
-			if (prevState.values !== values) {
+			const { blocks } = this.state;
+			if (prevState.blocks !== blocks) {
 				winConditions.forEach((condition) => {
 					if (
-						values[condition[0]] === values[condition[1]] &&
-						values[condition[0]] === values[condition[2]] &&
-						values[condition[0]] !== ""
+						blocks[condition[0]].value === blocks[condition[1]].value &&
+						blocks[condition[0]].value === blocks[condition[2]].value &&
+						blocks[condition[0]].value !== ""
 					) {
 						endOfGameInfo.winner = this.state.noughtTurn
 							? "Crosses"
 							: "Noughts";
 						endOfGameInfo.inPlay = false;
 						this.setState((currentState) => {
-							const classesArr = [...currentState.classes];
-							classesArr[condition[0]] = "grid-item win";
-							classesArr[condition[1]] = "grid-item win";
-							classesArr[condition[2]] = "grid-item win";
-							return { classes: classesArr };
+							const arr = [...currentState.blocks];
+							arr[condition[0]].classes = "grid-item win";
+							arr[condition[1]].classes = "grid-item win";
+							arr[condition[2]].classes = "grid-item win";
+							return { classes: arr };
 						});
-					} else if (values.find((value) => value === "") !== "") {
+					} else if (endOfGameInfo.turns === 9) {
 						endOfGameInfo.winner = "Neither of you";
 						endOfGameInfo.inPlay = false;
 					}
@@ -76,15 +76,15 @@ export default observer(
 		render() {
 			return (
 				<div className="grid-container">
-					{this.state.values.map((entry, index) => {
+					{this.state.blocks.map((block, index) => {
 						return (
 							<div
-								className={this.state.classes[index]}
+								className={block.classes}
 								key={index}
 								onClick={() => {
 									this.handleClick(index);
 								}}>
-								{entry}
+								{block.value}
 							</div>
 						);
 					})}

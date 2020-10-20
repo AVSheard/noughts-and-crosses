@@ -6,7 +6,6 @@ export default observer(
 	class AIToggle extends Component {
 		handleClick = (bool) => {
 			endOfGameInfo.AIOn = bool;
-			console.log(endOfGameInfo.AIOn);
 		};
 
 		render() {

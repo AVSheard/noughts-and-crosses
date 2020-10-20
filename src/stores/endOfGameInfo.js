@@ -1,5 +1,3 @@
-/** @format */
-
 import { decorate, observable } from "mobx";
 
 export class EndOfGameInfo {
@@ -13,7 +11,7 @@ export class EndOfGameInfo {
 decorate(EndOfGameInfo, {
 	inPlay: observable,
 	winner: observable,
-	turns: observable
+	turns: observable,
 });
 
 export const endOfGameInfo = new EndOfGameInfo();

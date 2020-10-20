@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { Component } from "react";
 import { endOfGameInfo } from "../stores/endOfGameInfo";
 import { observer } from "mobx-react";

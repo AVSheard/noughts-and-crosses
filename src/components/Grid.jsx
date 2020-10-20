@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { Component } from "react";
 import { endOfGameInfo } from "../stores/endOfGameInfo";
 import { observer } from "mobx-react";
@@ -14,7 +12,7 @@ const winConditions = [
 	[1, 4, 7],
 	[2, 5, 8],
 	[0, 4, 8],
-	[2, 4, 6]
+	[2, 4, 6],
 ];
 
 export default observer(
@@ -30,8 +28,8 @@ export default observer(
 				{ value: "", classes: "grid-item" },
 				{ value: "", classes: "grid-item" },
 				{ value: "", classes: "grid-item" },
-				{ value: "", classes: "grid-item" }
-			]
+				{ value: "", classes: "grid-item" },
+			],
 		};
 
 		handleClick = (index) => {

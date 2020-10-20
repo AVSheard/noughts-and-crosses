@@ -5,6 +5,7 @@ export class EndOfGameInfo {
 		this.inPlay = true;
 		this.winner = "";
 		this.turns = 0;
+		this.AIOn = true;
 	}
 }
 

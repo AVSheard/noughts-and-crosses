@@ -45,7 +45,6 @@ export default observer(
 
 		xTurnEasy() {
 			let move = Math.floor(Math.random() * 9);
-			console.log(move);
 			if (this.state.blocks[move].value === "") {
 				this.handleClick(move);
 			} else {
@@ -54,7 +53,6 @@ export default observer(
 		}
 
 		componentDidUpdate(prevProps, prevState) {
-			console.log(this.state.noughtTurn);
 			const { blocks } = this.state;
 			if (prevState.blocks !== blocks) {
 				winConditions.forEach((condition) => {
@@ -80,7 +78,6 @@ export default observer(
 					}
 				});
 			}
-			console.log(endOfGameInfo.turns);
 			if (
 				this.state.noughtTurn === false &&
 				endOfGameInfo.turns < 9 &&

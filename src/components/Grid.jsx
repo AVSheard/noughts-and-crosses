@@ -81,7 +81,11 @@ export default observer(
 				});
 			}
 			console.log(endOfGameInfo.turns);
-			if (this.state.noughtTurn === false && endOfGameInfo.turns < 9) {
+			if (
+				this.state.noughtTurn === false &&
+				endOfGameInfo.turns < 9 &&
+				endOfGameInfo.AIOn
+			) {
 				this.xTurnEasy();
 			}
 		}

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { endOfGameInfo, EndOfGameInfo } from "../stores/endOfGameInfo";
+import { endOfGameInfo } from "../stores/endOfGameInfo";
 import { observer } from "mobx-react";
 
 const cross = "x";

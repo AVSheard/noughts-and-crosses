@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { endOfGameInfo } from "../stores/endOfGameInfo";
+import { endOfGameInfo, EndOfGameInfo } from "../stores/endOfGameInfo";
 import { observer } from "mobx-react";
 
 const cross = "x";
@@ -43,7 +43,18 @@ export default observer(
 			}
 		};
 
+		xTurnEasy() {
+			let move = Math.floor(Math.random() * 9);
+			console.log(move);
+			if (this.state.blocks[move].value === "") {
+				this.handleClick(move);
+			} else {
+				this.xTurnEasy();
+			}
+		}
+
 		componentDidUpdate(prevProps, prevState) {
+			console.log(this.state.noughtTurn);
 			const { blocks } = this.state;
 			if (prevState.blocks !== blocks) {
 				winConditions.forEach((condition) => {
@@ -68,6 +79,10 @@ export default observer(
 						endOfGameInfo.inPlay = false;
 					}
 				});
+			}
+			console.log(endOfGameInfo.turns);
+			if (this.state.noughtTurn === false && endOfGameInfo.turns < 9) {
+				this.xTurnEasy();
 			}
 		}
 

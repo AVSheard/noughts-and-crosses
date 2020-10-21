@@ -18,6 +18,7 @@ export default observer(
 						id="onePlayer"
 						name="gameType"
 						value="onePlayer"
+						defaultChecked
 						onClick={() => {
 							this.handleClick(true);
 						}}></input>

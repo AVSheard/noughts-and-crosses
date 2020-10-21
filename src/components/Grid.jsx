@@ -83,7 +83,9 @@ export default observer(
 				endOfGameInfo.turns < 9 &&
 				endOfGameInfo.AIOn
 			) {
-				this.xTurnEasy();
+				setTimeout(() => {
+					this.xTurnEasy();
+				}, 500);
 			}
 		}
 

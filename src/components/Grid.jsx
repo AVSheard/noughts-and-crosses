@@ -53,10 +53,36 @@ export default observer(
 		}
 
 		xTurnNormal() {
-			let move = Math.floor(Math.random() * 9);
-			if (this.state.blocks[move].value === "") {
-				this.handleClick(move);
-			} else {
+			const { blocks } = this.state;
+			let boxFilled = false;
+			winConditions.forEach((condition) => {
+				if (
+					blocks[condition[0]].value === blocks[condition[1]].value &&
+					blocks[condition[2]].value === "" &&
+					blocks[condition[0]].value !== "" &&
+					!boxFilled
+				) {
+					boxFilled = true;
+					this.handleClick(condition[2]);
+				} else if (
+					blocks[condition[0]].value === blocks[condition[2]].value &&
+					blocks[condition[1]].value === "" &&
+					blocks[condition[0]].value !== "" &&
+					!boxFilled
+				) {
+					boxFilled = true;
+					this.handleClick(condition[1]);
+				} else if (
+					blocks[condition[2]].value === blocks[condition[1]].value &&
+					blocks[condition[0]].value === "" &&
+					blocks[condition[1]].value !== "" &&
+					!boxFilled
+				) {
+					boxFilled = true;
+					this.handleClick(condition[0]);
+				}
+			});
+			if (!boxFilled) {
 				this.xTurnEasy();
 			}
 		}

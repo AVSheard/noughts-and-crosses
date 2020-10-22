@@ -52,6 +52,15 @@ export default observer(
 			}
 		}
 
+		xTurnNormal() {
+			let move = Math.floor(Math.random() * 9);
+			if (this.state.blocks[move].value === "") {
+				this.handleClick(move);
+			} else {
+				this.xTurnEasy();
+			}
+		}
+
 		componentDidUpdate(prevProps, prevState) {
 			const { blocks } = this.state;
 			if (prevState.blocks !== blocks) {
@@ -83,9 +92,15 @@ export default observer(
 				endOfGameInfo.turns < 9 &&
 				endOfGameInfo.AIOn
 			) {
-				setTimeout(() => {
-					this.xTurnEasy();
-				}, 500);
+				if (endOfGameInfo.difficulty === "easy") {
+					setTimeout(() => {
+						this.xTurnEasy();
+					}, 500);
+				} else if (endOfGameInfo.difficulty === "normal") {
+					setTimeout(() => {
+						this.xTurnNormal();
+					}, 500);
+				}
 			}
 		}
 

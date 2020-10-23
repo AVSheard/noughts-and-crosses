@@ -52,36 +52,44 @@ export default observer(
 			}
 		}
 
-		xTurnNormal() {
+		twoAndBlankCheck(noughtOrCross, boxFilled) {
 			const { blocks } = this.state;
-			let boxFilled = false;
 			winConditions.forEach((condition) => {
 				if (
-					blocks[condition[0]].value === blocks[condition[1]].value &&
+					blocks[condition[0]].value === noughtOrCross &&
+					blocks[condition[1]].value === noughtOrCross &&
 					blocks[condition[2]].value === "" &&
-					blocks[condition[0]].value !== "" &&
 					!boxFilled
 				) {
 					boxFilled = true;
 					this.handleClick(condition[2]);
 				} else if (
-					blocks[condition[0]].value === blocks[condition[2]].value &&
+					blocks[condition[0]].value === noughtOrCross &&
+					blocks[condition[2]].value === noughtOrCross &&
 					blocks[condition[1]].value === "" &&
-					blocks[condition[0]].value !== "" &&
 					!boxFilled
 				) {
 					boxFilled = true;
 					this.handleClick(condition[1]);
 				} else if (
-					blocks[condition[2]].value === blocks[condition[1]].value &&
+					blocks[condition[2]].value === noughtOrCross &&
+					blocks[condition[1]].value === noughtOrCross &&
 					blocks[condition[0]].value === "" &&
-					blocks[condition[1]].value !== "" &&
 					!boxFilled
 				) {
 					boxFilled = true;
 					this.handleClick(condition[0]);
 				}
 			});
+			return boxFilled;
+		}
+
+		xTurnNormal() {
+			let boxFilled = false;
+			boxFilled = this.twoAndBlankCheck("x", boxFilled);
+			if (!boxFilled) {
+				boxFilled = this.twoAndBlankCheck("o", boxFilled);
+			}
 			if (!boxFilled) {
 				this.xTurnEasy();
 			}

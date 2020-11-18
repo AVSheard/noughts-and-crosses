@@ -1,8 +1,4 @@
-# Northcoders News API FE
-
-### Link to hosted version
-
-https://avsheard-ncnews.netlify.app/
+# Norghts and Crosses
 
 ### Project summary
 

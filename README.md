@@ -2,7 +2,7 @@
 
 ### Project summary
 
-This repo contains the frontend for a reddit style news app where users can login, read news articles and up/down vote them. The repo sends GET, PATCH, POST and DELETE requests to a seperately hosted backend. A back end for this repo can be found here: https://github.com/AVSheard/be-nc-news
+This repo contains the frontend for a noughts and crosses game that can be played by two human players or by one human player and the AI. On easy difficulty the AI goes in a random tile for each of its turns. On normal difficulty the AI will also go in a random square unless there is a row with two of the same type of piece and one blank space in which case it will go in the blank space in that row. 
 
 ### How to run this repo
 

@@ -33,6 +33,7 @@ export default observer(
 		};
 
 		handleClick = (index) => {
+			// handles a human player move
 			if (this.state.blocks[index].value === "" && endOfGameInfo.inPlay) {
 				endOfGameInfo.turns++;
 				this.setState((currentState) => {
@@ -44,6 +45,7 @@ export default observer(
 		};
 
 		xTurnEasy() {
+			// handle AI turn on easy mode
 			let move = Math.floor(Math.random() * 9);
 			if (this.state.blocks[move].value === "") {
 				this.handleClick(move);
@@ -97,6 +99,8 @@ export default observer(
 
 		componentDidUpdate(prevProps, prevState) {
 			const { blocks } = this.state;
+
+			// Check if either side has won
 			if (prevState.blocks !== blocks) {
 				winConditions.forEach((condition) => {
 					if (
@@ -121,6 +125,8 @@ export default observer(
 					}
 				});
 			}
+
+			// initiate AI turn if applicable
 			if (
 				this.state.noughtTurn === false &&
 				endOfGameInfo.turns < 9 &&

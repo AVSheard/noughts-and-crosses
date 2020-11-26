@@ -8,7 +8,7 @@ export default observer(
 			return (
 				!endOfGameInfo.inPlay && (
 					<div className="finalMessage">
-						{endOfGameInfo.winner} have won the game!
+						{endOfGameInfo.winner} have won!
 						<form>
 							<button>New Game</button>
 						</form>

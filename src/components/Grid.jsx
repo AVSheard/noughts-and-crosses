@@ -126,8 +126,10 @@ export default observer(
 		xTurnHard() {
 			let boxFilled = false;
 
+			// If there is one x in an other wise empty row place another x in that row
 			boxFilled = this.twoAndOneCheck("", "x", boxFilled);
 
+			// Call the easy difficulty function if no box has been filled
 			if (!boxFilled) {
 				this.xTurnEasy();
 			}

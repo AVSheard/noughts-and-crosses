@@ -113,7 +113,7 @@ export default observer(
 				boxFilled = this.twoAndOneCheck("o", "", boxFilled);
 			}
 
-			// If no box is filled call easy mode function to fill a box
+			// If no box is filled call easy or hard mode function to fill a box
 			if (!boxFilled) {
 				if (endOfGameInfo.difficulty === "easy") {
 					this.xTurnEasy();
@@ -170,7 +170,10 @@ export default observer(
 					setTimeout(() => {
 						this.xTurnEasy();
 					}, 500);
-				} else if (endOfGameInfo.difficulty === "normal") {
+				} else if (
+					endOfGameInfo.difficulty === "normal" ||
+					endOfGameInfo.difficulty === "hard"
+				) {
 					setTimeout(() => {
 						this.xTurnNormal();
 					}, 500);

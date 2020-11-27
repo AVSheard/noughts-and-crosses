@@ -6,7 +6,7 @@ export class EndOfGameInfo {
 		this.winner = "";
 		this.turns = 0;
 		this.AIOn = true;
-		this.difficulty = "normal";
+		this.difficulty = "hard";
 	}
 }
 

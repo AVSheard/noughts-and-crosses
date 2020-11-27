@@ -1,4 +1,4 @@
-# Norghts and Crosses
+# Noughts and Crosses
 
 ### Project summary
 

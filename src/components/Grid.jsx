@@ -62,31 +62,31 @@ export default observer(
 		}
 
 		// Function to check if two crosses/noughts and a blank space occupy a row and then call function to fill blank space
-		twoAndBlankCheck(noughtOrCross, boxFilled) {
+		twoAndOneCheck(doubleValue, singleValue, boxFilled) {
 			const { blocks } = this.state;
 
 			// check if two crosses/noughts and a blank space occupy a row and then call function to fill blank space
 			winConditions.forEach((condition) => {
 				if (
-					blocks[condition[0]].value === noughtOrCross &&
-					blocks[condition[1]].value === noughtOrCross &&
-					blocks[condition[2]].value === "" &&
+					blocks[condition[0]].value === doubleValue &&
+					blocks[condition[1]].value === doubleValue &&
+					blocks[condition[2]].value === singleValue &&
 					!boxFilled
 				) {
 					boxFilled = true;
 					this.handleClick(condition[2]);
 				} else if (
-					blocks[condition[0]].value === noughtOrCross &&
-					blocks[condition[2]].value === noughtOrCross &&
-					blocks[condition[1]].value === "" &&
+					blocks[condition[0]].value === doubleValue &&
+					blocks[condition[2]].value === doubleValue &&
+					blocks[condition[1]].value === singleValue &&
 					!boxFilled
 				) {
 					boxFilled = true;
 					this.handleClick(condition[1]);
 				} else if (
-					blocks[condition[2]].value === noughtOrCross &&
-					blocks[condition[1]].value === noughtOrCross &&
-					blocks[condition[0]].value === "" &&
+					blocks[condition[2]].value === doubleValue &&
+					blocks[condition[1]].value === doubleValue &&
+					blocks[condition[0]].value === singleValue &&
 					!boxFilled
 				) {
 					boxFilled = true;
@@ -103,11 +103,11 @@ export default observer(
 			let boxFilled = false;
 
 			// Fill in final box if two x's are in a row
-			boxFilled = this.twoAndBlankCheck("x", boxFilled);
+			boxFilled = this.twoAndOneCheck("x", "", boxFilled);
 
 			// Fill in final box if two o's are in a row
 			if (!boxFilled) {
-				boxFilled = this.twoAndBlankCheck("o", boxFilled);
+				boxFilled = this.twoAndOneCheck("o", "", boxFilled);
 			}
 
 			// If no box is filled call easy mode function to fill a box

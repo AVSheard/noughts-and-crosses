@@ -74,7 +74,8 @@ export default observer(
 					!boxFilled
 				) {
 					boxFilled = true;
-					this.handleClick(condition[2]);
+					const toFill = doubleValue ? 2 : 1;
+					this.handleClick(condition[toFill]);
 				} else if (
 					blocks[condition[0]].value === doubleValue &&
 					blocks[condition[2]].value === doubleValue &&
@@ -82,7 +83,8 @@ export default observer(
 					!boxFilled
 				) {
 					boxFilled = true;
-					this.handleClick(condition[1]);
+					const toFill = doubleValue ? 1 : 0;
+					this.handleClick(condition[toFill]);
 				} else if (
 					blocks[condition[2]].value === doubleValue &&
 					blocks[condition[1]].value === doubleValue &&
@@ -90,7 +92,8 @@ export default observer(
 					!boxFilled
 				) {
 					boxFilled = true;
-					this.handleClick(condition[0]);
+					const toFill = doubleValue ? 0 : 2;
+					this.handleClick(condition[toFill]);
 				}
 			});
 

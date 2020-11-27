@@ -123,6 +123,16 @@ export default observer(
 			}
 		}
 
+		xTurnHard() {
+			let boxFilled = false;
+
+			boxFilled = this.twoAndOneCheck("", "x", boxFilled);
+
+			if (!boxFilled) {
+				this.xTurnEasy();
+			}
+		}
+
 		componentDidUpdate(prevProps, prevState) {
 			const { blocks } = this.state;
 

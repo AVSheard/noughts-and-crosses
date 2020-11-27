@@ -32,10 +32,14 @@ export default observer(
 			],
 		};
 
+		// handles a human player move
 		handleClick = (index) => {
-			// handles a human player move
+			// Check that selected box is empty and that the game is not over
 			if (this.state.blocks[index].value === "" && endOfGameInfo.inPlay) {
+				// Update turn number
 				endOfGameInfo.turns++;
+
+				// Fill in target box and twitch turn to next player
 				this.setState((currentState) => {
 					const arr = [...currentState.blocks];
 					arr[index].value = this.state.noughtTurn ? nought : cross;
@@ -44,9 +48,12 @@ export default observer(
 			}
 		};
 
+		// Handle AI turn on easy mode
 		xTurnEasy() {
-			// handle AI turn on easy mode
+			// Select a random number between 0-8
 			let move = Math.floor(Math.random() * 9);
+
+			// Fill in selected box if empty otherwise call this function again
 			if (this.state.blocks[move].value === "") {
 				this.handleClick(move);
 			} else {
@@ -54,8 +61,11 @@ export default observer(
 			}
 		}
 
+		// Function to check if two crosses/noughts and a blank space occupy a row and then call function to fill blank space
 		twoAndBlankCheck(noughtOrCross, boxFilled) {
 			const { blocks } = this.state;
+
+			// check if two crosses/noughts and a blank space occupy a row and then call function to fill blank space
 			winConditions.forEach((condition) => {
 				if (
 					blocks[condition[0]].value === noughtOrCross &&
@@ -83,15 +93,24 @@ export default observer(
 					this.handleClick(condition[0]);
 				}
 			});
+
+			// Pass on whether a box got filled with a boolean
 			return boxFilled;
 		}
 
+		// Handle AI turn on normal mode
 		xTurnNormal() {
 			let boxFilled = false;
+
+			// Fill in final box if two x's are in a row
 			boxFilled = this.twoAndBlankCheck("x", boxFilled);
+
+			// Fill in final box if two o's are in a row
 			if (!boxFilled) {
 				boxFilled = this.twoAndBlankCheck("o", boxFilled);
 			}
+
+			// If no box is filled call easy mode function to fill a box
 			if (!boxFilled) {
 				this.xTurnEasy();
 			}
@@ -108,10 +127,15 @@ export default observer(
 						blocks[condition[0]].value === blocks[condition[2]].value &&
 						blocks[condition[0]].value !== ""
 					) {
+						// Work out which side has won
 						endOfGameInfo.winner = this.state.noughtTurn
 							? "Crosses"
 							: "Noughts";
+
+						// End the game
 						endOfGameInfo.inPlay = false;
+
+						// Highlight boxes in winning row
 						this.setState((currentState) => {
 							const arr = [...currentState.blocks];
 							arr[condition[0]].classes = "grid-item win";
@@ -119,7 +143,9 @@ export default observer(
 							arr[condition[2]].classes = "grid-item win";
 							return { classes: arr };
 						});
-					} else if (endOfGameInfo.turns === 9) {
+					}
+					// End game if neither side has won
+					else if (endOfGameInfo.turns === 9) {
 						endOfGameInfo.winner = "Neither of you";
 						endOfGameInfo.inPlay = false;
 					}
@@ -132,6 +158,7 @@ export default observer(
 				endOfGameInfo.turns < 9 &&
 				endOfGameInfo.AIOn
 			) {
+				// Call AI function after short time delay
 				if (endOfGameInfo.difficulty === "easy") {
 					setTimeout(() => {
 						this.xTurnEasy();

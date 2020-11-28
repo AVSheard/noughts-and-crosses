@@ -37,9 +37,18 @@ export default observer(
 						id="hard"
 						name="difficulty"
 						value="hard"
-						defaultChecked
 						onClick={() => {
 							this.handleClick("hard");
+						}}></input>
+					<label>Very Hard</label>
+					<input
+						type="radio"
+						id="veryHard"
+						name="difficulty"
+						value="veryHard"
+						defaultChecked
+						onClick={() => {
+							this.handleClick("veryHard");
 						}}></input>
 				</form>
 			);

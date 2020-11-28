@@ -115,11 +115,9 @@ export default observer(
 
 			// If no box is filled call easy or hard mode function to fill a box
 			if (!boxFilled) {
-				if (endOfGameInfo.difficulty === "easy") {
-					this.xTurnEasy();
-				} else {
-					this.xTurnHard();
-				}
+				endOfGameInfo.difficulty === "easy"
+					? this.xTurnEasy()
+					: this.xTurnHard();
 			}
 		}
 
@@ -129,9 +127,11 @@ export default observer(
 			// If there is one x in an other wise empty row place another x in that row
 			boxFilled = this.twoAndOneCheck("", "x", boxFilled);
 
-			// Call the easy difficulty function if no box has been filled
+			// Call the easy or veryHard difficulty function if no box has been filled
 			if (!boxFilled) {
-				this.xTurnEasy();
+				endOfGameInfo.difficulty === "hard"
+					? this.xTurnEasy()
+					: this.xTurnVeryHard;
 			}
 		}
 

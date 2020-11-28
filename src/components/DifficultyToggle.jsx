@@ -28,6 +28,7 @@ export default observer(
 						id="normal"
 						name="difficulty"
 						value="normal"
+						defaultChecked
 						onClick={() => {
 							this.handleClick("normal");
 						}}></input>
@@ -46,7 +47,6 @@ export default observer(
 						id="veryHard"
 						name="difficulty"
 						value="veryHard"
-						defaultChecked
 						onClick={() => {
 							this.handleClick("veryHard");
 						}}></input>

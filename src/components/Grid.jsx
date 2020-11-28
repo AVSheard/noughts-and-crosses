@@ -138,8 +138,18 @@ export default observer(
 
 		// Handle AI turn on very hard mode
 		xTurnVeryHard() {
+			const { blocks } = this.state;
+			let boxFilled = false;
+
 			// Array with the box numbers in value order
-			const priorityArr = [5, 1, 3, 7, 9, 2, 4, 6, 8];
+			const priorityArr = [4, 0, 2, 6, 8, 1, 3, 5, 7];
+
+			for (let i = 0; i < priorityArr.length; i++) {
+				if (!boxFilled && blocks[priorityArr[i]].value === "") {
+					boxFilled = true;
+					this.handleClick(priorityArr[i]);
+				}
+			}
 		}
 
 		componentDidUpdate(prevProps, prevState) {

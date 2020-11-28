@@ -2,7 +2,7 @@
 
 ### Project summary
 
-This repo contains the frontend for a noughts and crosses game that can be played by two human players or by one human player and the AI. On easy difficulty the AI goes in a random tile for each of its turns. On normal difficulty the AI will also go in a random square unless there is a row with two of the same type of piece and one blank space in which case it will go in the blank space in that row. Hard difficulty works the same as normal except if the AI can't find a row it has already placed two pieces in it will place a piece in a row it has already placed on piece in before resorting to going in a random square.
+This repo contains the frontend for a noughts and crosses game that can be played by two human players or by one human player and the AI. On easy difficulty the AI goes in a random tile for each of its turns. On normal difficulty the AI will also go in a random square unless there is a row with two of the same type of piece and one blank space in which case it will go in the blank space in that row. Hard difficulty works the same as normal except if the AI can't find a row it has already placed two pieces in it will place a piece in a row it has already placed on piece in before resorting to going in a random square. Very Hard difficulty works the same as Hard mode except it chooses the square that at the start of the game can lead to the most possible ways of winning.
 
 ### How to run this repo
 

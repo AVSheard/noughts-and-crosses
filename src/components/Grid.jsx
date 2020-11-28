@@ -137,7 +137,10 @@ export default observer(
 		}
 
 		// Handle AI turn on very hard mode
-		xTurnVeryHard() {}
+		xTurnVeryHard() {
+			// Array with the box numbers in value order
+			const priorityArr = [5, 1, 3, 7, 9, 2, 4, 6, 8];
+		}
 
 		componentDidUpdate(prevProps, prevState) {
 			const { blocks } = this.state;

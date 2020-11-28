@@ -131,9 +131,11 @@ export default observer(
 			if (!boxFilled) {
 				endOfGameInfo.difficulty === "hard"
 					? this.xTurnEasy()
-					: this.xTurnVeryHard;
+					: this.xTurnVeryHard();
 			}
 		}
+
+		xTurnVeryHard() {}
 
 		componentDidUpdate(prevProps, prevState) {
 			const { blocks } = this.state;

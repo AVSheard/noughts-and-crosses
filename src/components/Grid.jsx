@@ -121,6 +121,7 @@ export default observer(
 			}
 		}
 
+		// Handle AI turn on hard mode
 		xTurnHard() {
 			let boxFilled = false;
 
@@ -135,6 +136,7 @@ export default observer(
 			}
 		}
 
+		// Handle AI turn on very hard mode
 		xTurnVeryHard() {}
 
 		componentDidUpdate(prevProps, prevState) {

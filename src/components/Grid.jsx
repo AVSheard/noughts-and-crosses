@@ -144,6 +144,7 @@ export default observer(
 			// Array with the box numbers in value order
 			const priorityArr = [4, 0, 2, 6, 8, 1, 3, 5, 7];
 
+			// Check if each block in empty in value order and fill the first empty one found
 			for (let i = 0; i < priorityArr.length; i++) {
 				if (!boxFilled && blocks[priorityArr[i]].value === "") {
 					boxFilled = true;

@@ -184,7 +184,8 @@ export default observer(
 					}, 500);
 				} else if (
 					endOfGameInfo.difficulty === "normal" ||
-					endOfGameInfo.difficulty === "hard"
+					endOfGameInfo.difficulty === "hard" ||
+					endOfGameInfo.difficulty === "veryHard"
 				) {
 					setTimeout(() => {
 						this.xTurnNormal();

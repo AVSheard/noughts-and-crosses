@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { endOfGameInfo } from "../stores/endOfGameInfo";
 import { observer } from "mobx-react";
+import Reset from "./Reset";
 
 const cross = "x";
 const nought = "o";
@@ -215,20 +216,23 @@ export default observer(
 
 		render() {
 			return (
-				<div className="grid-container">
-					{this.state.blocks.map((block, index) => {
-						return (
-							<div
-								className={block.classes}
-								key={index}
-								onClick={() => {
-									this.handleClick(index);
-								}}>
-								{block.value}
-							</div>
-						);
-					})}
-				</div>
+				<>
+					<Reset />
+					<div className="grid-container">
+						{this.state.blocks.map((block, index) => {
+							return (
+								<div
+									className={block.classes}
+									key={index}
+									onClick={() => {
+										this.handleClick(index);
+									}}>
+									{block.value}
+								</div>
+							);
+						})}
+					</div>
+				</>
 			);
 		}
 	}

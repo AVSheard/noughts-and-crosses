@@ -115,7 +115,8 @@ export default observer(
 
 			// If no box is filled call easy or hard mode function to fill a box
 			if (!boxFilled) {
-				endOfGameInfo.difficulty === "easy"
+				endOfGameInfo.difficulty === "easy" ||
+				endOfGameInfo.difficulty === "normal"
 					? this.xTurnEasy()
 					: this.xTurnHard();
 			}

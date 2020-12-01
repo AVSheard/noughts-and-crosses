@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { endOfGameInfo } from "../stores/endOfGameInfo";
 import { observer } from "mobx-react";
-import Reset from "./Reset";
 
 const cross = "x";
 const nought = "o";
@@ -218,15 +217,34 @@ export default observer(
 		clearGrid() {
 			// return the value of each block to default value ("")
 			this.setState((currentState) => {
-				const arr = [...currentState.blocks].map((block) => (block.value = ""));
+				const arr = [...currentState.blocks].map((block) => {
+					block.value = "";
+					block.classes = "grid-item";
+					return block;
+				});
 				return { blocks: arr, noughtTurn: true };
 			});
+
+			// Reset game data to default values
+			endOfGameInfo.inPlay = true;
+			endOfGameInfo.winner = "";
+			endOfGameInfo.turns = 0;
 		}
 
 		render() {
 			return (
 				<>
-					<Reset />
+					{!endOfGameInfo.inPlay && (
+						<div className="finalMessage">
+							{endOfGameInfo.winner} have won!
+							<button
+								onClick={() => {
+									this.clearGrid();
+								}}>
+								New Game
+							</button>
+						</div>
+					)}
 					<div className="grid-container">
 						{this.state.blocks.map((block, index) => {
 							return (

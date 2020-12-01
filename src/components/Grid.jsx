@@ -214,6 +214,15 @@ export default observer(
 			}
 		}
 
+		// Function to clear grid at the end of a game
+		clearGrid() {
+			// return the value of each block to default value ("")
+			this.setState((currentState) => {
+				const arr = [...currentState.blocks].map((block) => (block.value = ""));
+				return { blocks: arr, noughtTurn: true };
+			});
+		}
+
 		render() {
 			return (
 				<>

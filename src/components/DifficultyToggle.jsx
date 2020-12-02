@@ -6,7 +6,6 @@ export default observer(
 	class DifficultyToggle extends Component {
 		handleClick = (diff) => {
 			endOfGameInfo.difficulty = diff;
-			console.log(endOfGameInfo.difficulty);
 		};
 
 		render() {

@@ -64,36 +64,27 @@ export default observer(
 		// Function to check if two crosses/noughts and a blank space occupy a row and then call function to fill blank space
 		twoAndOneCheck(doubleValue, singleValue, boxFilled) {
 			const { blocks } = this.state;
+			const arraysToCheck = [
+				[0, 1, 2],
+				[2, 0, 1],
+				[1, 2, 0],
+			];
 
 			// check if two crosses/noughts and a blank space occupy a row and then call function to fill blank space
 			winConditions.forEach((condition) => {
-				if (
-					blocks[condition[0]].value === doubleValue &&
-					blocks[condition[1]].value === doubleValue &&
-					blocks[condition[2]].value === singleValue &&
-					!boxFilled
-				) {
-					boxFilled = true;
-					const toFill = doubleValue ? 2 : 1;
-					this.handleClick(condition[toFill]);
-				} else if (
-					blocks[condition[0]].value === doubleValue &&
-					blocks[condition[2]].value === doubleValue &&
-					blocks[condition[1]].value === singleValue &&
-					!boxFilled
-				) {
-					boxFilled = true;
-					const toFill = doubleValue ? 1 : 0;
-					this.handleClick(condition[toFill]);
-				} else if (
-					blocks[condition[2]].value === doubleValue &&
-					blocks[condition[1]].value === doubleValue &&
-					blocks[condition[0]].value === singleValue &&
-					!boxFilled
-				) {
-					boxFilled = true;
-					const toFill = doubleValue ? 0 : 2;
-					this.handleClick(condition[toFill]);
+				for (let i = 0; i < arraysToCheck.length; i++) {
+					if (
+						blocks[condition[arraysToCheck[i][0]]].value === doubleValue &&
+						blocks[condition[arraysToCheck[i][1]]].value === doubleValue &&
+						blocks[condition[arraysToCheck[i][2]]].value === singleValue &&
+						!boxFilled
+					) {
+						boxFilled = true;
+						const toFill = doubleValue
+							? arraysToCheck[i][2]
+							: arraysToCheck[i][1];
+						this.handleClick(condition[toFill]);
+					}
 				}
 			});
 

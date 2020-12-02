@@ -10,7 +10,6 @@ function App() {
 		<div>
 			<Header />
 			<AIToggle />
-			<DifficultyToggle />
 			<Grid />
 		</div>
 	);
